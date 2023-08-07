@@ -23,6 +23,8 @@ class Item:
         self.price = price
         self.quantity = quantity
 
+        Item.all.append(self)
+
 
     def calculate_total_price(self) -> float:
 
