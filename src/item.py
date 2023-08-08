@@ -1,3 +1,6 @@
+import csv
+
+
 class Item:
 
     """
@@ -19,16 +22,17 @@ class Item:
         :param quantity: Количество товара в магазине.
         """
 
-        self.name = name
+        self.__name = name
         self.price = price
         self.quantity = quantity
+
+        Item.all.append(self)
 
 
     def calculate_total_price(self) -> float:
 
         """
         Рассчитывает общую стоимость конкретного товара в магазине.
-
         :return: Общая стоимость товара.
         """
 
@@ -46,3 +50,49 @@ class Item:
         self.price *= self.pay_rate
 
         return self.price
+
+
+    @property
+    def name(self):
+
+        """ Метод геттер для name, используя @property """
+
+        return self.__name
+
+
+    @name.setter
+    def name(self, value):
+
+        """ Метод сеттер, где проверяем, что длина наименования товара
+        не больше 10 символов. Если больше, то обрезаем строку до первых 10 символов"""
+
+        self.__name = value
+
+        if len(value) > 10:
+            self.__name = value[:10]
+        else:
+            self.__name = value
+
+
+    @classmethod
+    def instantiate_from_csv(cls):
+
+        """ Класс-метод, инициализирующий экземпляры класса Item
+        данными из файла src/items.csv """
+
+        cls.all = []
+
+        with open("../src/items.csv", "rt", newline="", encoding="cp1251") as csv_file:
+
+           reader = csv.DictReader(csv_file)
+
+           for object in reader:
+               objects = cls(object["name"], object["price"], object["quantity"])
+
+
+    @staticmethod
+    def string_to_number(number):
+
+        """ Статический метод, возвращающий число из числа-строки """
+
+        return int(float(number))
