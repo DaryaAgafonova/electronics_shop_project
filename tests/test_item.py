@@ -22,3 +22,10 @@ def test_apply_discount():
     Item.pay_rate = 0.8
 
     assert item1.apply_discount() == 8000.0
+
+
+def test_string_to_number():
+
+    assert Item.string_to_number("5.0") == 5
+    assert Item.string_to_number("5.0") == 5
+    assert Item.string_to_number("5.5") == 5
