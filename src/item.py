@@ -69,7 +69,7 @@ class Item:
         self.__name = value
 
         if len(value) > 10:
-            self.__name = value[:10]
+            self.__name = value[:11]
         else:
             self.__name = value
 
