@@ -100,9 +100,23 @@ class Item:
 
     def __repr__(self):
 
+        """ Метод, который выводит ифнормацию для разработиков """
+
         return f"{self.__class__.__name__}('{self.__name}', {self.price}, {self.quantity})"
 
 
     def __str__(self):
 
+        """ Метод, который выводит информацию для пользователей """
+
         return self.__name
+
+
+    def __add__(self, other):
+
+        """ Метод сложения количества товаров двух классов """
+
+        if not isinstance(other, Item):
+            raise ValueError("Количество физических SIM-карт должно быть целым числом больше нуля.")
+        else:
+            return self.quantity + other.quantity
