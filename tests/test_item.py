@@ -1,6 +1,7 @@
 """Здесь надо написать тесты с использованием pytest для модуля item."""
 import pytest
 from src.item import Item
+from src.phone import Phone
 
 @pytest.fixture
 def item1():
@@ -10,7 +11,17 @@ def item1():
     return Item("Смартфон", 10000, 20)
 
 
+@pytest.fixture
+def phone1():
+
+    """ Экземпляр класса в фикстуре """
+
+    return Phone("IPhone", 30000, 10, 2)
+
+
 def test_1(item1):
+
+    """ Тест метода init """
 
     assert item1.name == "Смартфон"
     assert item1.price == 10000
@@ -19,10 +30,14 @@ def test_1(item1):
 
 def test_calculate_total_price(item1):
 
+    """ Тест функции calculate_total_price """
+
     assert item1.calculate_total_price() == 200000
 
 
 def test_apply_discount(item1):
+
+    """ Тест функции apply_discount """
 
     Item.pay_rate = 0.8
 
@@ -31,10 +46,14 @@ def test_apply_discount(item1):
 
 def test_getter_name(item1):
 
+    """ Тест property-getter """
+
     assert item1.name == "Смартфон"
 
 
 def test_setter_name(item1):
+
+    """ Тест property-setter """
 
     item1.name = "IPhone 13 Pro"
     assert item1.name == "IPhone 13 P"
@@ -45,6 +64,8 @@ def test_setter_name(item1):
 
 def test_string_to_number():
 
+    """ Тест статистического метода string_to_number """
+
     assert Item.string_to_number("5.0") == 5
     assert Item.string_to_number("5.0") == 5
     assert Item.string_to_number("5.5") == 5
@@ -52,9 +73,20 @@ def test_string_to_number():
 
 def test_repr(item1):
 
+    """ Тест метода repr """
+
     assert repr(item1) == "Item('Смартфон', 10000, 20)"
 
 
 def test_str(item1):
 
+    """ Тест метода str """
+
     assert str(item1) == "Смартфон"
+
+
+def test_add(item1, phone1):
+
+    """ Тест метода add """
+
+    assert item1 + phone1 == 30
