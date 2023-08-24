@@ -3,6 +3,7 @@ import pytest
 from src.item import Item
 from src.phone import Phone
 
+
 @pytest.fixture
 def item1():
 
@@ -60,6 +61,15 @@ def test_setter_name(item1):
 
     item1.name = "IPhone 13"
     assert item1.name == "IPhone 13"
+
+
+def test_instantiate_from_csv():
+
+    """ Тест функции instantiate_from_csv """
+
+    Item.all = []
+    Item.instantiate_from_csv()
+    assert len(Item.all) == 0
 
 
 def test_string_to_number():
