@@ -10,13 +10,13 @@ class MixinLog():
         """ Создание экземпляра класса MixinLog """
 
         super().__init__(name, price, quantity)
-        self.__language = language
+        self.language = language # self.__language = language
 
 
-    @property
-    def language(self):
+    #@property - это для ошибка в маине5
+    #def language(self):
 
-        return self.__language
+    #   return self.__language
 
 
     def __str__(self):
