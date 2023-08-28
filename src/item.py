@@ -90,7 +90,7 @@ class Item:
                 reader = csv.DictReader(csv_file)
 
                 for object in reader:
-                    if "key" not in object or "key" not in object:
+                    if "name" not in object or "price" not in object or "quantity" not in object:
                         raise InstantiateCSVError
                     objects = cls(object["name"], object["price"], object["quantity"])
         except FileNotFoundError:
